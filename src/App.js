@@ -21,16 +21,26 @@ function App() {
     setStep(3);
   };
 
+  const handleChangeArmy = () => {
+    setStep(2); // Go back to army selection step
+    setArmy(null); // Optionally reset the army selection
+  };
+
+  const handleBack = () => {
+    setStep((prevStep) => prevStep - 1); // Navigates to the previous step
+  };
+
   return (
     <>
       <TopMenu />
-      <Box sx={{ mt: '64px', px: 2 }}>
+      <Box sx={{ mt: '64px' }}>
         {step === 1 && <Step1SelectGame onNext={handleNextGameType} />}
-        {step === 2 && <Step2SelectArmy gameType={gameType} onNext={handleNextArmy} />}
-        {step === 3 && <ArmyBuilder gameType={gameType} army={army} />}
+        {step === 2 && <Step2SelectArmy gameType={gameType} onNext={handleNextArmy} onBack={handleBack} />}
+        {step === 3 && <ArmyBuilder gameType={gameType} army={army} onChangeArmy={handleChangeArmy} />}
       </Box>
     </>
   );
 }
 
 export default App;
+

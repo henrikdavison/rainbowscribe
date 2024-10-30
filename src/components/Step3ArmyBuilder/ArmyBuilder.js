@@ -4,7 +4,7 @@ import { Box, Typography, IconButton, Menu, MenuItem } from '@mui/material';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import CategoryList from './CategoryList';
 
-function ArmyBuilder({ army }) {
+function ArmyBuilder({ army, onChangeArmy }) {
   const [anchorEl, setAnchorEl] = useState(null);
   const [totalPoints, setTotalPoints] = useState(0);
 
@@ -17,8 +17,8 @@ function ArmyBuilder({ army }) {
   };
 
   const handleChangeArmy = () => {
-    setAnchorEl(null);
-    // Logic for changing the army would go here
+    handleMenuClose(); // Close the menu before changing army
+    onChangeArmy(); // Call the callback passed from App.js to handle the step reset
   };
 
   const handleTotalPointsChange = (points) => {
