@@ -11,14 +11,15 @@ function CategoryItem({ name, points, count, onDelete }) {
       alignItems="center"
       p={1}
       bgcolor="grey.100"
-      borderRadius="4px"
       mb={1}
     >
       <Typography>{name} x{count}</Typography>
       <Box display="flex" alignItems="center">
-        <Typography variant="body2" mr={1}>{points} pts</Typography>
+        <Typography variant="pointsValue" mr={1}>
+          {points} pts
+        </Typography>
         <IconButton size="small" onClick={onDelete}>
-          <DeleteIcon color="error" />
+          <DeleteIcon />
         </IconButton>
       </Box>
     </Box>
@@ -26,3 +27,4 @@ function CategoryItem({ name, points, count, onDelete }) {
 }
 
 export default CategoryItem;
+git add .

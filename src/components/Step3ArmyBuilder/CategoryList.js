@@ -60,11 +60,11 @@ function CategoryList({ onTotalPointsChange }) {
 
   return (
     <>
-      <Stack spacing={2}>
+      <Stack>
         {categories.map((category) => (
-          <Box key={category.name} bgcolor="grey.300" borderRadius="4px" p={1}>
+          <Box borderTop={1} borderBottom={1} borderColor="grey.300" key={category.name} bgcolor="grey.200" pt={1}>
             <Box display="flex" justifyContent="space-between" alignItems="center" mb={1}>
-              <Typography variant="subtitle1">{category.name}</Typography>
+              <Typography px={2} variant="subtitle1">{category.name}</Typography>
               {/* Open category-specific drawer */}
               <CategoryUnitSelectionDrawer
                 open={categoryDrawerOpen && selectedCategory === category.name}

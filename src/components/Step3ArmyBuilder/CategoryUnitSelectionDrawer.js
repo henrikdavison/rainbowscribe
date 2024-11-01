@@ -1,13 +1,14 @@
 // src/components/Step3ArmyBuilder/CategoryUnitSelectionDrawer.js
 import React from 'react';
-import { Drawer, List, Button, Box, ListSubheader } from '@mui/material';
+import { Drawer, List, IconButton, Button, Box, ListSubheader } from '@mui/material';
+import AddIcon from '@mui/icons-material/Add';
 
 function CategoryUnitSelectionDrawer({ open, onOpen, onClose, category, units, onSelectUnit, unitCounts }) {
   return (
     <>
-      <Button variant="contained" onClick={onOpen}>
-        Add {category}
-      </Button>
+      <IconButton variant="contained" onClick={onOpen}>
+        <AddIcon />
+      </IconButton>
 
       <Drawer
         anchor="bottom"
