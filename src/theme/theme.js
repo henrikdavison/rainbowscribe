@@ -3,19 +3,16 @@ import { createTheme } from '@mui/material/styles';
 import typography from './typography';
 import spacing from './spacing';
 
+import { createTheme } from '@mui/material/styles';
+
 const getTheme = (mode) => createTheme({
   palette: {
-    mode: mode === 'dark' ? 'dark' : 'light', // Ensure mode is a string ('light' or 'dark')
-    primary: {
-      main: '#1976d2', // Default MUI primary color
-    },
-    secondary: {
-      main: '#dc004e', // Default MUI secondary color
-    },
-    background: {
-      default: mode === 'dark' ? '#121212' : '#f5f5f5', // Set default backgrounds for light/dark modes
-    },
+    mode: mode === 'dark' ? 'dark' : 'light',
+    primary: { main: '#1976d2' },
+    secondary: { main: '#dc004e' },
   },
+});
+
   typography: typography,
   spacing: 8,
   customSpacing: spacing,

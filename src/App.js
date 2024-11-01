@@ -37,7 +37,7 @@ function App() {
     setMode((prevMode) => (prevMode === 'light' ? 'dark' : 'light'));
   };
 
-  const theme = getTheme(mode); // Get theme based on current mode
+  const theme = getTheme(mode); // Ensure we call getTheme() with mode to get the theme object
 
   return (
     <ThemeProvider theme={theme}>
