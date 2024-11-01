@@ -13,7 +13,7 @@ const getTheme = (mode) => createTheme({
       default: mode === 'dark' ? '#121212' : '#f5f5f5',
       paper: mode === 'dark' 
         ? 'rgba(255, 255, 255, 0.05)'  // Transparent overlay for most paper surfaces
-        : 'rgba(0, 0, 0, 0.02)',
+        : '#ffffff',
     },
   },
   typography: {

@@ -1,22 +1,22 @@
 import React from 'react';
-import { Box, Typography, IconButton, useTheme } from '@mui/material';
-import DeleteIcon from '@mui/icons-material/Delete';
+import { Box, Typography, IconButton, Paper } from '@mui/material';
+import { Trash } from 'lucide-react'; // Importing the Lucide Trash icon
 
 function CategoryItem({ name, points, count, onDelete, isLastItem }) {
-  const theme = useTheme(); // Access the default MUI theme
-  
   return (
-    <Box
-      display="flex"
-      justifyContent="space-between"
-      alignItems="center"
+    <Paper
+      elevation={2} // Small elevation to give a subtle shadow
       sx={{
-        ...theme.utils.giveOuterPadding,
-        borderBottom: isLastItem ? 0 : 1, // No border-bottom for the last item
-        borderColor: theme.palette.divider, // Use theme divider color
-        bgcolor: theme.palette.background.paper, // Apply paper background for depth
+        display: 'flex',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        padding: 1.5,
+        marginX: 1,
+        marginY: 0.5,
+        bgcolor: 'background.paper',
+        borderRadius: 2,
+        minHeight: 56,
       }}
-      minHeight={56}
     >
       <Typography>{name} x{count}</Typography>
       <Box display="flex" alignItems="center">
@@ -24,10 +24,10 @@ function CategoryItem({ name, points, count, onDelete, isLastItem }) {
           {points} pts
         </Typography>
         <IconButton size="medium" onClick={onDelete}>
-          <DeleteIcon />
+          <Trash size={18} /> {/* Lucide Trash icon with a set size */}
         </IconButton>
       </Box>
-    </Box>
+    </Paper>
   );
 }
 

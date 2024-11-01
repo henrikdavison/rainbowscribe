@@ -71,16 +71,13 @@ function CategoryList({ onTotalPointsChange }) {
 
   return (
     <>
-      <Stack borderTop={1} borderColor={theme.palette.divider}>
+      <Stack borderColor={theme.palette.divider}>
         {categories.map((category, index) => (
           <Box
             key={category.name}
-            bgcolor={theme.palette.background.paper}
-            pt={1}
-            borderBottom={1}
-            borderColor={theme.palette.divider}
+            marginTop={2}
           >
-            <Box paddingBottom={1} display="flex" justifyContent="space-between" alignItems="center">
+            <Box display="flex" justifyContent="space-between" alignItems="center">
               <Typography sx={(theme) => theme.utils.giveOuterPadding} variant="overline">{category.name}</Typography>
               <CategoryUnitSelectionDrawer
                 open={categoryDrawerOpen && selectedCategory === category.name}
