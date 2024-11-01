@@ -9,14 +9,21 @@ function CategoryList({ onTotalPointsChange }) {
 
   const categories = [
     { name: 'Epic Hero', items: [] },
-    { name: '1x Character', items: [] },
-    { name: '1x Battleline', items: [] },
+    { name: 'Character', items: [] },
+    { name: 'Battleline', items: [] },
+    { name: 'Vehicle', items: [] },
+    { name: 'Fortification', items: [] },
+    { name: 'Allied Units', items: [] },
+
   ];
 
   const [army, setArmy] = useState({
     'Epic Hero': [],
-    '1x Character': [],
-    '1x Battleline': [],
+    'Character': [],
+    'Battleline': [],
+    'Vehicle': [],
+    'Fortification': [],
+    'Allied Units': [],
   });
 
   const [unitCounts, setUnitCounts] = useState({});
@@ -26,8 +33,11 @@ function CategoryList({ onTotalPointsChange }) {
 
   const sampleUnits = {
     'Epic Hero': [{ name: 'Barroth', points: 75 }, { name: 'Fuegan Ra', points: 100 }],
-    '1x Character': [{ name: 'Autarch', points: 100 }, { name: 'Farseer', points: 120 }],
-    '1x Battleline': [{ name: 'Guardian Defenders', points: 100 }, { name: 'Storm Guardians', points: 110 }],
+    'Character': [{ name: 'Autarch', points: 100 }, { name: 'Farseer', points: 120 }],
+    'Battleline': [{ name: 'Guardian Defenders', points: 100 }, { name: 'Storm Guardians', points: 110 }],
+    'Vehicle': [{ name: 'Guardian Defenders', points: 100 }, { name: 'Storm Guardians', points: 110 }],
+    'Fortification': [{ name: 'Guardian Defenders', points: 100 }, { name: 'Storm Guardians', points: 110 }],
+    'Allied Units': [{ name: 'Guardian Defenders', points: 100 }, { name: 'Storm Guardians', points: 110 }],
   };
 
   const handleSelectUnit = (unit, category) => {
@@ -71,7 +81,7 @@ function CategoryList({ onTotalPointsChange }) {
             borderColor={theme.palette.divider}
           >
             <Box paddingBottom={1} display="flex" justifyContent="space-between" alignItems="center">
-              <Typography sx={(theme) => theme.utils.giveOuterPadding} variant="subtitle1">{category.name}</Typography>
+              <Typography sx={(theme) => theme.utils.giveOuterPadding} variant="overline">{category.name}</Typography>
               <CategoryUnitSelectionDrawer
                 open={categoryDrawerOpen && selectedCategory === category.name}
                 onOpen={() => {

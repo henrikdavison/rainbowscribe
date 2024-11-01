@@ -6,7 +6,7 @@ import AddIcon from '@mui/icons-material/Add';
 function CategoryUnitSelectionDrawer({ open, onOpen, onClose, category, units, onSelectUnit, unitCounts }) {
   return (
     <>
-      <IconButton sx={{ mr: 2 }} variant="contained" onClick={onOpen}>
+      <IconButton fontSize="small"  sx={{ mr: 2 }} variant="contained" onClick={onOpen}>
         <AddIcon />
       </IconButton>
 
