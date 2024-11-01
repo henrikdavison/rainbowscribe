@@ -1,18 +1,20 @@
 // src/components/TopMenu.js
 import React from 'react';
-import { AppBar, Toolbar, Typography, IconButton } from '@mui/material';
-import MenuIcon from '@mui/icons-material/Menu';
+import { AppBar, Toolbar, Typography, Switch, Box } from '@mui/material';
 
-function TopMenu() {
+function TopMenu({ toggleDarkMode, mode }) {
   return (
-    <AppBar position="fixed" color="primary" elevation={0}>
+    <AppBar position="static" color="primary">
       <Toolbar>
-        <IconButton edge="start" color="inherit" aria-label="menu" sx={{ mr: 2 }}>
-          <MenuIcon />
-        </IconButton>
-        <Typography variant="h6" color="inherit" noWrap>
+        <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
           Rainbowscribe
         </Typography>
+        <Box display="flex" alignItems="center">
+          <Typography variant="body2" sx={{ mr: 1 }}>
+            {mode === 'light' ? 'Light Mode' : 'Dark Mode'}
+          </Typography>
+          <Switch checked={mode === 'dark'} onChange={toggleDarkMode} />
+        </Box>
       </Toolbar>
     </AppBar>
   );

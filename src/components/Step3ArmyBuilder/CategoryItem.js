@@ -3,18 +3,19 @@ import React from 'react';
 import { Box, Typography, IconButton } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
 
-function CategoryItem({ name, points, count, onDelete }) {
+function CategoryItem({ name, points, count, onDelete, isLastItem }) {
   return (
     <Box
       display="flex"
       justifyContent="space-between"
       alignItems="center"
-      sx={(theme) => theme.utils.giveOuterPadding}
+      sx={(theme) => ({
+        ...theme.utils.giveOuterPadding,
+        borderBottom: isLastItem ? 0 : 1, // No border-bottom for the last item
+        borderColor: 'grey.300',
+      })}
       bgcolor="white"
       minHeight={56}
-      borderTop={1} 
-      borderBottom={1} 
-      borderColor="grey.300" 
       
     >
       <Typography>{name} x{count}</Typography>
@@ -22,7 +23,7 @@ function CategoryItem({ name, points, count, onDelete }) {
         <Typography variant="pointsValue" mr={1}>
           {points} pts
         </Typography>
-        <IconButton size="small" onClick={onDelete}>
+        <IconButton size="medium" onClick={onDelete}>
           <DeleteIcon />
         </IconButton>
       </Box>

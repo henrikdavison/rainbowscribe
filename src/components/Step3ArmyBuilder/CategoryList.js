@@ -19,9 +19,9 @@ function CategoryList({ onTotalPointsChange }) {
   });
 
   const [unitCounts, setUnitCounts] = useState({});
-  const [fabDrawerOpen, setFabDrawerOpen] = useState(false); // State for FAB drawer
-  const [categoryDrawerOpen, setCategoryDrawerOpen] = useState(false); // State for Category drawer
-  const [selectedCategory, setSelectedCategory] = useState(null); // Track category for category drawer
+  const [fabDrawerOpen, setFabDrawerOpen] = useState(false);
+  const [categoryDrawerOpen, setCategoryDrawerOpen] = useState(false);
+  const [selectedCategory, setSelectedCategory] = useState(null);
 
   const sampleUnits = {
     'Epic Hero': [{ name: 'Barroth', points: 75 }, { name: 'Fuegan Ra', points: 100 }],
@@ -60,12 +60,17 @@ function CategoryList({ onTotalPointsChange }) {
 
   return (
     <>
-      <Stack>
-        {categories.map((category) => (
-          <Box borderTop={1} borderBottom={1} borderColor="grey.300" key={category.name} bgcolor="grey.200" pt={1}>
-            <Box display="flex" justifyContent="space-between" alignItems="center" mb={1}>
+      <Stack borderTop={1} borderColor="grey.300">
+        {categories.map((category, index) => (
+          <Box
+            key={category.name}
+            bgcolor="grey.200"
+            pt={1}
+            borderBottom={1}
+            borderColor="grey.300"
+          >
+            <Box paddingBottom={1} display="flex" justifyContent="space-between" alignItems="center">
               <Typography sx={(theme) => theme.utils.giveOuterPadding} variant="subtitle1">{category.name}</Typography>
-              {/* Open category-specific drawer */}
               <CategoryUnitSelectionDrawer
                 open={categoryDrawerOpen && selectedCategory === category.name}
                 onOpen={() => {
@@ -80,13 +85,14 @@ function CategoryList({ onTotalPointsChange }) {
               />
             </Box>
             <Stack>
-              {army[category.name].map((item) => (
+              {army[category.name].map((item, itemIndex) => (
                 <CategoryItem
                   key={item.id}
                   name={item.name}
                   points={item.points}
                   count={unitCounts[item.name] || 0}
                   onDelete={() => handleDeleteItem(category.name, item.id, item.name)}
+                  isLastItem={itemIndex === army[category.name].length - 1}
                 />
               ))}
             </Stack>

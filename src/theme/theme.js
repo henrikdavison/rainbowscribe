@@ -1,11 +1,21 @@
 // src/theme/theme.js
 import { createTheme } from '@mui/material/styles';
-import colors from './colors';
 import typography from './typography';
 import spacing from './spacing';
 
-const theme = createTheme({
-  palette: colors,
+const getTheme = (mode) => createTheme({
+  palette: {
+    mode: mode === 'dark' ? 'dark' : 'light', // Ensure mode is a string ('light' or 'dark')
+    primary: {
+      main: '#1976d2', // Default MUI primary color
+    },
+    secondary: {
+      main: '#dc004e', // Default MUI secondary color
+    },
+    background: {
+      default: mode === 'dark' ? '#121212' : '#f5f5f5', // Set default backgrounds for light/dark modes
+    },
+  },
   typography: typography,
   spacing: 8,
   customSpacing: spacing,
@@ -17,7 +27,6 @@ const theme = createTheme({
           style: {
             fontSize: '0.875rem',
             fontWeight: 500,
-            color: '#FF4081',
           },
         },
       ],
@@ -34,4 +43,4 @@ const theme = createTheme({
   },
 });
 
-export default theme;
+export default getTheme;
