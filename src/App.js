@@ -43,7 +43,7 @@ function App() {
     <ThemeProvider theme={theme}>
       <CssBaseline />
       <TopMenu toggleDarkMode={toggleDarkMode} mode={mode} />
-      <Box sx={{ mt: '64px' }}>
+      <Box sx={{ mt: '16px' }}>
         {step === 1 && <Step1SelectGame onNext={handleNextGameType} />}
         {step === 2 && <Step2SelectArmy gameType={gameType} onNext={handleNextArmy} onBack={handleBack} />}
         {step === 3 && <ArmyBuilder gameType={gameType} army={army} onChangeArmy={handleChangeArmy} />}

@@ -1,22 +1,22 @@
-// src/components/Step3ArmyBuilder/CategoryItem.js
 import React from 'react';
-import { Box, Typography, IconButton } from '@mui/material';
+import { Box, Typography, IconButton, useTheme } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
 
 function CategoryItem({ name, points, count, onDelete, isLastItem }) {
+  const theme = useTheme(); // Access the default MUI theme
+  
   return (
     <Box
       display="flex"
       justifyContent="space-between"
       alignItems="center"
-      sx={(theme) => ({
+      sx={{
         ...theme.utils.giveOuterPadding,
         borderBottom: isLastItem ? 0 : 1, // No border-bottom for the last item
-        borderColor: 'grey.300',
-      })}
-      bgcolor="white"
+        borderColor: theme.palette.divider, // Use theme divider color
+        bgcolor: theme.palette.background.paper, // Apply paper background for depth
+      }}
       minHeight={56}
-      
     >
       <Typography>{name} x{count}</Typography>
       <Box display="flex" alignItems="center">
@@ -32,3 +32,4 @@ function CategoryItem({ name, points, count, onDelete, isLastItem }) {
 }
 
 export default CategoryItem;
+

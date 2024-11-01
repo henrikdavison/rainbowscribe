@@ -1,11 +1,12 @@
-// src/components/Step3ArmyBuilder/CategoryList.js
 import React, { useState, useEffect } from 'react';
-import { Box, Typography, Stack } from '@mui/material';
+import { Box, Typography, Stack, useTheme } from '@mui/material';
 import CategoryItem from './CategoryItem';
 import FABUnitSelectionDrawer from './FABUnitSelectionDrawer';
 import CategoryUnitSelectionDrawer from './CategoryUnitSelectionDrawer';
 
 function CategoryList({ onTotalPointsChange }) {
+  const theme = useTheme(); // Access the default MUI theme
+
   const categories = [
     { name: 'Epic Hero', items: [] },
     { name: '1x Character', items: [] },
@@ -60,14 +61,14 @@ function CategoryList({ onTotalPointsChange }) {
 
   return (
     <>
-      <Stack borderTop={1} borderColor="grey.300">
+      <Stack borderTop={1} borderColor={theme.palette.divider}>
         {categories.map((category, index) => (
           <Box
             key={category.name}
-            bgcolor="grey.200"
+            bgcolor={theme.palette.background.paper}
             pt={1}
             borderBottom={1}
-            borderColor="grey.300"
+            borderColor={theme.palette.divider}
           >
             <Box paddingBottom={1} display="flex" justifyContent="space-between" alignItems="center">
               <Typography sx={(theme) => theme.utils.giveOuterPadding} variant="subtitle1">{category.name}</Typography>
