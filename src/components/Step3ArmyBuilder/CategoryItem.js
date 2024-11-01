@@ -9,9 +9,13 @@ function CategoryItem({ name, points, count, onDelete }) {
       display="flex"
       justifyContent="space-between"
       alignItems="center"
-      p={1}
-      bgcolor="grey.100"
-      mb={1}
+      sx={(theme) => theme.utils.giveOuterPadding}
+      bgcolor="white"
+      minHeight={56}
+      borderTop={1} 
+      borderBottom={1} 
+      borderColor="grey.300" 
+      
     >
       <Typography>{name} x{count}</Typography>
       <Box display="flex" alignItems="center">
@@ -27,4 +31,3 @@ function CategoryItem({ name, points, count, onDelete }) {
 }
 
 export default CategoryItem;
-git add .

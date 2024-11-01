@@ -64,7 +64,7 @@ function CategoryList({ onTotalPointsChange }) {
         {categories.map((category) => (
           <Box borderTop={1} borderBottom={1} borderColor="grey.300" key={category.name} bgcolor="grey.200" pt={1}>
             <Box display="flex" justifyContent="space-between" alignItems="center" mb={1}>
-              <Typography px={2} variant="subtitle1">{category.name}</Typography>
+              <Typography sx={(theme) => theme.utils.giveOuterPadding} variant="subtitle1">{category.name}</Typography>
               {/* Open category-specific drawer */}
               <CategoryUnitSelectionDrawer
                 open={categoryDrawerOpen && selectedCategory === category.name}
@@ -79,7 +79,7 @@ function CategoryList({ onTotalPointsChange }) {
                 unitCounts={unitCounts}
               />
             </Box>
-            <Stack spacing={1}>
+            <Stack>
               {army[category.name].map((item) => (
                 <CategoryItem
                   key={item.id}
