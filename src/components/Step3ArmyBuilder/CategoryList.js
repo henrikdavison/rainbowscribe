@@ -5,7 +5,7 @@ import FABUnitSelectionDrawer from './FABUnitSelectionDrawer';
 import CategoryUnitSelectionDrawer from './CategoryUnitSelectionDrawer';
 
 function CategoryList({ onTotalPointsChange }) {
-  const theme = useTheme(); // Access the default MUI theme
+  const theme = useTheme();
 
   const categories = [
     { name: 'Epic Hero', items: [] },
@@ -14,7 +14,7 @@ function CategoryList({ onTotalPointsChange }) {
     { name: 'Vehicle', items: [] },
     { name: 'Fortification', items: [] },
     { name: 'Allied Units', items: [] },
-
+    { name: 'all', items: [] }, // Adding 'all' as a category
   ];
 
   const [army, setArmy] = useState({
@@ -24,6 +24,7 @@ function CategoryList({ onTotalPointsChange }) {
     'Vehicle': [],
     'Fortification': [],
     'Allied Units': [],
+    'all': [], // Initialize 'all' as an empty array
   });
 
   const [unitCounts, setUnitCounts] = useState({});
@@ -38,12 +39,13 @@ function CategoryList({ onTotalPointsChange }) {
     'Vehicle': [{ name: 'Guardian Defenders', points: 100 }, { name: 'Storm Guardians', points: 110 }],
     'Fortification': [{ name: 'Guardian Defenders', points: 100 }, { name: 'Storm Guardians', points: 110 }],
     'Allied Units': [{ name: 'Guardian Defenders', points: 100 }, { name: 'Storm Guardians', points: 110 }],
+    'all': [], // Add 'all' category for FAB units selection
   };
 
   const handleSelectUnit = (unit, category) => {
     setArmy((prevArmy) => ({
       ...prevArmy,
-      [category]: [...prevArmy[category], { ...unit, id: Date.now() }],
+      [category]: [...(prevArmy[category] || []), { ...unit, id: Date.now() }], // Initialize category as array if undefined
     }));
 
     setUnitCounts((prevCounts) => ({
