@@ -14,7 +14,7 @@ function CategoryItem({ name, points, count, onDelete, isLastItem }) {
         marginX: 1,
         marginY: 0.5,
         bgcolor: 'background.paper',
-        borderRadius: 2,
+        borderRadius: 1.5,
         minHeight: 56,
       }}
     >
