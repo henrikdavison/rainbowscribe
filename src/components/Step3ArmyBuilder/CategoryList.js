@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Box, Typography, Stack, useTheme } from '@mui/material';
 import CategoryItem from './CategoryItem';
-import FABUnitSelectionDrawer from './FABUnitSelectionDrawer';
-import CategoryUnitSelectionDrawer from './CategoryUnitSelectionDrawer';
+import UnitSelectionDrawer from './UnitSelectionDrawer';
 
 function CategoryList({ onTotalPointsChange }) {
   const theme = useTheme();
@@ -14,7 +13,7 @@ function CategoryList({ onTotalPointsChange }) {
     { name: 'Vehicle', items: [] },
     { name: 'Fortification', items: [] },
     { name: 'Allied Units', items: [] },
-    { name: 'all', items: [] }, // Adding 'all' as a category
+    { name: 'all', items: [] },
   ];
 
   const [army, setArmy] = useState({
@@ -24,30 +23,24 @@ function CategoryList({ onTotalPointsChange }) {
     'Vehicle': [],
     'Fortification': [],
     'Allied Units': [],
-    'all': [], // Initialize 'all' as an empty array
+    'all': [],
   });
 
   const [unitCounts, setUnitCounts] = useState({});
-  const [fabDrawerOpen, setFabDrawerOpen] = useState(false);
-  const [categoryDrawerOpen, setCategoryDrawerOpen] = useState(false);
-  const [selectedCategory, setSelectedCategory] = useState(null);
-
   const sampleUnits = {
     'Epic Hero': [{ name: 'Barroth', points: 75 }, { name: 'Fuegan Ra', points: 100 }],
     'Character': [{ name: 'Autarch', points: 100 }, { name: 'Farseer', points: 120 }],
     'Battleline': [{ name: 'Guardian Defenders', points: 100 }, { name: 'Storm Guardians', points: 110 }],
-    'Vehicle': [{ name: 'Guardian Defenders', points: 100 }, { name: 'Storm Guardians', points: 110 }],
-    'Fortification': [{ name: 'Guardian Defenders', points: 100 }, { name: 'Storm Guardians', points: 110 }],
-    'Allied Units': [{ name: 'Guardian Defenders', points: 100 }, { name: 'Storm Guardians', points: 110 }],
-    'all': [], // Add 'all' category for FAB units selection
+    'Vehicle': [{ name: 'Wave Serpent', points: 130 }, { name: 'Fire Prism', points: 140 }],
+    'Fortification': [{ name: 'Bastion', points: 150 }, { name: 'Defense Wall', points: 80 }],
+    'Allied Units': [{ name: 'Ally Unit A', points: 90 }, { name: 'Ally Unit B', points: 95 }],
   };
 
   const handleSelectUnit = (unit, category) => {
     setArmy((prevArmy) => ({
       ...prevArmy,
-      [category]: [...(prevArmy[category] || []), { ...unit, id: Date.now() }], // Initialize category as array if undefined
+      [category]: [...(prevArmy[category] || []), { ...unit, id: Date.now() }],
     }));
-
     setUnitCounts((prevCounts) => ({
       ...prevCounts,
       [unit.name]: (prevCounts[unit.name] || 0) + 1,
@@ -59,7 +52,6 @@ function CategoryList({ onTotalPointsChange }) {
       ...prevArmy,
       [category]: prevArmy[category].filter((item) => item.id !== id),
     }));
-
     setUnitCounts((prevCounts) => ({
       ...prevCounts,
       [unitName]: Math.max((prevCounts[unitName] || 1) - 1, 0),
@@ -74,35 +66,27 @@ function CategoryList({ onTotalPointsChange }) {
   return (
     <>
       <Stack borderColor={theme.palette.divider}>
-        {categories.map((category, index) => (
-          <Box
-            key={category.name}
-            marginTop={2}
-          >
+        {categories.map((category) => (
+          <Box key={category.name} marginTop={2} paddingLeft={2}>
             <Box display="flex" justifyContent="space-between" alignItems="center">
-              <Typography sx={(theme) => theme.utils.giveOuterPadding} variant="overline">{category.name}</Typography>
-              <CategoryUnitSelectionDrawer
-                open={categoryDrawerOpen && selectedCategory === category.name}
-                onOpen={() => {
-                  setSelectedCategory(category.name);
-                  setCategoryDrawerOpen(true);
-                }}
-                onClose={() => setCategoryDrawerOpen(false)}
+              <Typography variant="overline">{category.name}</Typography>
+              <UnitSelectionDrawer
+                unitsByCategory={sampleUnits}
                 category={category.name}
-                units={sampleUnits[category.name]}
                 onSelectUnit={(unit) => handleSelectUnit(unit, category.name)}
                 unitCounts={unitCounts}
+                isFAB={false}
               />
             </Box>
             <Stack>
-              {army[category.name].map((item, itemIndex) => (
+              {army[category.name].map((item) => (
                 <CategoryItem
                   key={item.id}
                   name={item.name}
                   points={item.points}
                   count={unitCounts[item.name] || 0}
                   onDelete={() => handleDeleteItem(category.name, item.id, item.name)}
-                  isLastItem={itemIndex === army[category.name].length - 1}
+                  isLastItem={item === army[category.name][army[category.name].length - 1]}
                 />
               ))}
             </Stack>
@@ -111,16 +95,15 @@ function CategoryList({ onTotalPointsChange }) {
       </Stack>
 
       {/* FAB Drawer for all units */}
-      <FABUnitSelectionDrawer
-        open={fabDrawerOpen}
-        onOpen={() => setFabDrawerOpen(true)}
-        onClose={() => setFabDrawerOpen(false)}
+      <UnitSelectionDrawer
         unitsByCategory={sampleUnits}
         onSelectUnit={(unit) => handleSelectUnit(unit, 'all')}
         unitCounts={unitCounts}
+        isFAB={true}
       />
     </>
   );
 }
 
 export default CategoryList;
+
