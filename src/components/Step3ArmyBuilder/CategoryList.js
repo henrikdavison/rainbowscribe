@@ -13,7 +13,6 @@ function CategoryList({ onTotalPointsChange }) {
     { name: 'Vehicle', items: [] },
     { name: 'Fortification', items: [] },
     { name: 'Allied Units', items: [] },
-    { name: 'all', items: [] },
   ];
 
   const [army, setArmy] = useState({
@@ -23,7 +22,6 @@ function CategoryList({ onTotalPointsChange }) {
     'Vehicle': [],
     'Fortification': [],
     'Allied Units': [],
-    'all': [],
   });
 
   const [unitCounts, setUnitCounts] = useState({});
@@ -97,7 +95,7 @@ function CategoryList({ onTotalPointsChange }) {
       {/* FAB Drawer for all units */}
       <UnitSelectionDrawer
         unitsByCategory={sampleUnits}
-        onSelectUnit={(unit) => handleSelectUnit(unit, 'all')}
+        onSelectUnit={(unit) => handleSelectUnit(unit, Object.keys(sampleUnits).find((key) => sampleUnits[key].includes(unit)))}
         unitCounts={unitCounts}
         isFAB={true}
       />
@@ -106,4 +104,3 @@ function CategoryList({ onTotalPointsChange }) {
 }
 
 export default CategoryList;
-

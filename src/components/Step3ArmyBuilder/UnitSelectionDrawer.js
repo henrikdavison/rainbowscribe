@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
-import { Fab, Drawer, List, ListSubheader, Button, Box, Paper, Typography, IconButton, useTheme } from '@mui/material';
+import { Fab, Drawer, List, ListSubheader, Box, Paper, Typography, IconButton, Button, useTheme } from '@mui/material';
 import { Plus, Minus, X } from 'lucide-react';
 import { keyframes } from '@emotion/react';
 
 const fadeIn = keyframes`
-  from { opacity: 0; transform: translateY(5px); }
-  to { opacity: 1; transform: translateY(0); }
+  0% { opacity: 0; transform: translateY(10px); }
+  100% { opacity: 1; transform: translateY(0); }
 `;
 
 function DrawerItem({ unit, isSelected, selectedCount, selectedPoints, onSelect, onDeselect }) {
@@ -122,7 +122,6 @@ function UnitSelectionDrawer({ unitsByCategory, category = null, onSelectUnit, u
     });
   };
 
-  // Handle unit display with categories when opened via FAB
   const unitsToShow = category
     ? (unitsByCategory[category] || [])
     : Object.entries(unitsByCategory);
@@ -152,31 +151,39 @@ function UnitSelectionDrawer({ unitsByCategory, category = null, onSelectUnit, u
           sx: {
             borderTopLeftRadius: 8,
             borderTopRightRadius: 8,
-            maxHeight: '60vh',
-            overflowY: 'auto',
+            height: '60vh',
+            display: 'flex',
+            flexDirection: 'column',
             bgcolor: theme.palette.background.default,
           },
         }}
       >
-        <List sx={{ paddingBottom: 8 }}>
-          {category
-            ? // Display units for a single category
-              unitsToShow.map((unit, index) => (
-                <DrawerItem
-                  key={index}
-                  unit={unit}
-                  isSelected={selectedUnits[unit.name]?.count > 0}
-                  selectedCount={selectedUnits[unit.name]?.count || 0}
-                  selectedPoints={selectedUnits[unit.name]?.points || 0}
-                  onSelect={() => handleSelectUnit(unit)}
-                  onDeselect={() => handleDeselectUnit(unit)}
-                />
-              ))
-            : // Display all units grouped by category
+        <Box sx={{ flexGrow: 1, overflowY: 'auto', paddingBottom: 8 }}>
+          <List>
+            {category ? (
+              <>
+                <ListSubheader sx={{ bgcolor: theme.palette.background.default }}>
+                  <Typography variant="overline" color="text.primary">
+                    {category}
+                  </Typography>
+                </ListSubheader>
+                {unitsToShow.map((unit, index) => (
+                  <DrawerItem
+                    key={index}
+                    unit={unit}
+                    isSelected={selectedUnits[unit.name]?.count > 0}
+                    selectedCount={selectedUnits[unit.name]?.count || 0}
+                    selectedPoints={selectedUnits[unit.name]?.points || 0}
+                    onSelect={() => handleSelectUnit(unit)}
+                    onDeselect={() => handleDeselectUnit(unit)}
+                  />
+                ))}
+              </>
+            ) : (
               unitsToShow.map(([categoryName, units]) => (
                 <React.Fragment key={categoryName}>
                   <ListSubheader sx={{ bgcolor: theme.palette.background.default }}>
-                    <Typography  variant="overline" color="text.primary">
+                    <Typography variant="overline" color="text.primary">
                       {categoryName}
                     </Typography>
                   </ListSubheader>
@@ -192,10 +199,12 @@ function UnitSelectionDrawer({ unitsByCategory, category = null, onSelectUnit, u
                     />
                   ))}
                 </React.Fragment>
-              ))}
-        </List>
+              ))
+            )}
+          </List>
+        </Box>
 
-        <Box sx={{ position: 'sticky', bottom: 0, bgcolor: theme.palette.background.default, p: 2, zIndex: 1 }}>
+        <Box sx={{ position: 'sticky', bottom: 0, bgcolor: theme.palette.background.default, p: 2 }}>
           <Button onClick={() => setOpen(false)} variant="contained" color="primary" size="large" fullWidth startIcon={<X size={18} />}>
             Close
           </Button>
@@ -206,4 +215,3 @@ function UnitSelectionDrawer({ unitsByCategory, category = null, onSelectUnit, u
 }
 
 export default UnitSelectionDrawer;
-
