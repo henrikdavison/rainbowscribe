@@ -1,10 +1,8 @@
-// src/App.js
 import React, { useState } from 'react';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import { Box, CssBaseline, ThemeProvider } from '@mui/material';
 import TopMenu from './components/TopMenu';
-import Step1SelectGame from './components/Step1SelectGame';
-import Step2SelectArmy from './components/Step2SelectArmy';
-import ArmyBuilder from './components/Step3ArmyBuilder/ArmyBuilder';
+import ArmyBuilderRoute from './components/ArmyBuilderRoute'; // Adjust the path if necessary
 import getTheme from './theme/theme';
 
 function App() {
@@ -42,15 +40,31 @@ function App() {
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
-      <TopMenu toggleDarkMode={toggleDarkMode} mode={mode} />
-      <Box sx={{ mt: '16px' }}>
-        {step === 1 && <Step1SelectGame onNext={handleNextGameType} />}
-        {step === 2 && <Step2SelectArmy gameType={gameType} onNext={handleNextArmy} onBack={handleBack} />}
-        {step === 3 && <ArmyBuilder gameType={gameType} army={army} onChangeArmy={handleChangeArmy} />}
-      </Box>
+      <Router>
+        <TopMenu toggleDarkMode={toggleDarkMode} mode={mode} />
+        <Box sx={{ mt: '16px' }}>
+          <Routes>
+            <Route path="/" element={<Navigate to="/army-builder" replace />} />
+            <Route
+              path="/army-builder"
+              element={
+                <ArmyBuilderRoute
+                  step={step}
+                  setStep={setStep}
+                  gameType={gameType}
+                  army={army}
+                  handleNextGameType={handleNextGameType}
+                  handleNextArmy={handleNextArmy}
+                  handleChangeArmy={handleChangeArmy}
+                  handleBack={handleBack}
+                />
+              }
+            />
+          </Routes>
+        </Box>
+      </Router>
     </ThemeProvider>
   );
 }
 
 export default App;
-
