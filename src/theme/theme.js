@@ -2,6 +2,10 @@ import { createTheme, alpha } from '@mui/material/styles';
 import typography from './typography';
 import spacing from './spacing';
 import "@fontsource/inter";
+import "@fontsource/inter/400.css";
+import "@fontsource/inter/500.css";
+import "@fontsource/inter/600.css";
+import "@fontsource/inter/700.css";
 
 const getTheme = (mode) => {
   const theme = createTheme({
@@ -25,7 +29,7 @@ const getTheme = (mode) => {
       fontFamily: 'Inter, sans-serif',
       h1: { fontWeight: 700, fontSize: '2.5rem' },
       h2: { fontWeight: 600, fontSize: '2rem' },
-      body1: { fontWeight: 400, fontSize: '1rem', lineHeight: 1.5 },
+      body1: { fontWeight: 400, fontSize: '1rem' },
     },
     shape: {
       borderRadius: 8,
@@ -45,7 +49,7 @@ const getTheme = (mode) => {
             props: { variant: 'pointsValue' },
             style: ({ theme }) => ({
               fontSize: '0.75rem',
-              fontWeight: 700,
+              fontWeight: 600,
               color: mode === 'dark' ? theme.palette.primary.light : theme.palette.primary.dark,
               backgroundColor: theme.palette.shades.primaryShade,
               borderRadius: 8,

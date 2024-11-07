@@ -54,9 +54,8 @@ function ArmyBuilder({ army, faction = "Aeldari", onChangeArmy }) {
             autoFocus
             fullWidth
             sx={{
-              typography: 'h4',
+
               color: hasEditedName ? 'text.primary' : 'text.secondary',
-              '& .MuiInputBase-input': { fontWeight: 'bold' },
             }}
           />
         ) : (
@@ -64,7 +63,6 @@ function ArmyBuilder({ army, faction = "Aeldari", onChangeArmy }) {
             <Typography
               variant="h6"
               color={customName ? 'text.primary' : 'text.secondary'}
-              fontWeight="bold"
               onClick={handleNameClick}
             >
               {customName || "Army name"}
