@@ -4,7 +4,7 @@ import { Plus, Minus, X } from 'lucide-react';
 import { keyframes } from '@emotion/react';
 
 const fadeIn = keyframes`
-  0% { opacity: 0; transform: translateY(10px); }
+  0% { opacity: 0; transform: translateY(15px); }  // Start higher for more movement
   100% { opacity: 1; transform: translateY(0); }
 `;
 
@@ -79,7 +79,7 @@ function DrawerItem({ unit, isSelected, selectedCount, selectedPoints, onSelect,
             animation: `${fadeIn} 0.3s ease-in-out`,
           }}
         >
-          {selectedCount} selected &middot; {selectedPoints} pts total
+          {selectedCount} selected • {selectedPoints} pts total
         </Typography>
       )}
     </Paper>
