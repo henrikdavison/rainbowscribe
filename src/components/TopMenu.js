@@ -1,12 +1,13 @@
-// src/components/TopMenu.js
 import React from 'react';
 import { AppBar, Toolbar, Typography, Switch, Box } from '@mui/material';
+import BurgerMenu from './BurgerMenu';
 
 function TopMenu({ toggleDarkMode, mode }) {
   return (
     <AppBar position="static" color="primary">
       <Toolbar>
-        <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+        <BurgerMenu /> {/* Burger Menu Icon */}
+        <Typography variant="h6" component="div" sx={{ flexGrow: 1, ml: 2 }}>
           Rainbowscribe
         </Typography>
         <Box display="flex" alignItems="center">
