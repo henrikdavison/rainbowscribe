@@ -7,7 +7,7 @@ function TopMenu({ toggleDarkMode, mode }) {
     <AppBar position="static" color={mode === 'light' ? 'default' : 'primary'}>
       <Toolbar>
         <BurgerMenu toggleDarkMode={toggleDarkMode} mode={mode} />
-        <Typography variant="p" component="div" sx={{ flexGrow: 1, ml: 2 }}>
+        <Typography variant="p" component="div" sx={{ flexGrow: 1, ml: 1 }}>
           Rainbowscribe
         </Typography>
       </Toolbar>

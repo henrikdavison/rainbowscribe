@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
-import { Fab, Drawer, List, ListSubheader, Box, Paper, Typography, IconButton, Button, useTheme } from '@mui/material';
+import { Fab, SwipeableDrawer, List, ListSubheader, Box, Paper, Typography, IconButton, Button, useTheme, useMediaQuery } from '@mui/material';
 import { Plus, Minus, X } from 'lucide-react';
 import { keyframes } from '@emotion/react';
 
 const fadeIn = keyframes`
-  0% { opacity: 0; transform: translateY(15px); }  // Start higher for more movement
+  0% { opacity: 0; transform: translateY(15px); }
   100% { opacity: 1; transform: translateY(0); }
 `;
 
@@ -36,11 +36,13 @@ function DrawerItem({ unit, isSelected, selectedCount, selectedPoints, onSelect,
         }}
       >
         <Box sx={{ flexGrow: 1, display: 'flex', alignItems: 'center' }}>
-          <Typography variant="unitName"
+          <Typography
+            variant="unitName"
             sx={{
               overflow: 'hidden',
               textOverflow: 'ellipsis',
               whiteSpace: 'nowrap',
+              mr: 1,
             }}
           >
             {unit.name}
@@ -48,7 +50,8 @@ function DrawerItem({ unit, isSelected, selectedCount, selectedPoints, onSelect,
         </Box>
 
         <Box display="flex" alignItems="center">
-          <Typography variant="pointsValue"
+          <Typography
+            variant="pointsValue"
             sx={{
               textAlign: 'right',
               minWidth: 50,
@@ -90,6 +93,7 @@ function UnitSelectionDrawer({ unitsByCategory, category = null, onSelectUnit, u
   const theme = useTheme();
   const [open, setOpen] = useState(false);
   const [selectedUnits, setSelectedUnits] = useState({});
+  const isMobile = useMediaQuery(theme.breakpoints.down('sm')); // Detects mobile screens
 
   const handleSelectUnit = (unit) => {
     setSelectedUnits((prevSelectedUnits) => {
@@ -142,10 +146,11 @@ function UnitSelectionDrawer({ unitsByCategory, category = null, onSelectUnit, u
         </IconButton>
       )}
 
-      <Drawer
+      <SwipeableDrawer
         anchor="bottom"
         open={open}
         onClose={() => setOpen(false)}
+        onOpen={() => setOpen(true)}
         PaperProps={{
           sx: {
             borderTopLeftRadius: 8,
@@ -157,6 +162,21 @@ function UnitSelectionDrawer({ unitsByCategory, category = null, onSelectUnit, u
           },
         }}
       >
+        {/* Drawer Swipe Indicator (Visible only on mobile) */}
+        {isMobile && (
+          <Box
+            sx={{
+              width: 40,
+              height: 8,
+              bgcolor: theme.palette.text.secondary,
+              borderRadius: 4,
+              alignSelf: 'center',
+              marginTop: 1,
+              marginBottom: 1,
+            }}
+          />
+        )}
+
         <Box sx={{ flexGrow: 1, overflowY: 'auto', paddingBottom: 8 }}>
           <List>
             {category ? (
@@ -204,11 +224,11 @@ function UnitSelectionDrawer({ unitsByCategory, category = null, onSelectUnit, u
         </Box>
 
         <Box sx={{ position: 'sticky', bottom: 0, bgcolor: theme.palette.background.default, p: 2 }}>
-          <Button onClick={() => setOpen(false)} variant="contained" color="primary" size="large" fullWidth startIcon={<X size={18} />}>
+          <Button onClick={() => setOpen(false)} variant="contained" color="primary" size="large" fullWidth startIcon={<X size={24} />}>
             Close
           </Button>
         </Box>
-      </Drawer>
+      </SwipeableDrawer>
     </>
   );
 }

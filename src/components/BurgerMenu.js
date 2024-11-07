@@ -9,7 +9,7 @@ function BurgerMenu({ toggleDarkMode, mode }) {
 
   return (
     <Box>
-      <IconButton onClick={handleToggle}>
+      <IconButton sx={{ ml: -1 }} onClick={handleToggle}>
         <Menu size={24} />
       </IconButton>
       <Drawer anchor="left" open={open} onClose={handleToggle}>
