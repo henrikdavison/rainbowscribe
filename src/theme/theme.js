@@ -1,74 +1,100 @@
-import { createTheme } from '@mui/material/styles';
+import { createTheme, alpha } from '@mui/material/styles';
 import typography from './typography';
 import spacing from './spacing';
 import "@fontsource/inter";
 
-const getTheme = (mode) => createTheme({
-  palette: {
-    mode: mode === 'dark' ? 'dark' : 'light',
-    primary: { main: '#1976d2' },
-    secondary: { main: '#dc004e' },
-    background: {
-      default: mode === 'dark' ? '#121212' : '#f5f5f5',
-      paper: mode === 'dark' 
-        ? 'rgba(255, 255, 255, 0.05)'  // Transparent overlay for most paper surfaces
-        : '#ffffff',
+const getTheme = (mode) => {
+  const theme = createTheme({
+    palette: {
+      mode: mode === 'dark' ? 'dark' : 'light',
+      primary: { main: '#1976d2' },
+      secondary: { main: '#dc004e' },
+      error: { main: '#d32f2f' },
+      info: { main: '#0288d1' },
+      warning: { main: '#ed6c02' },
+      success: { main: '#2e7d32' },
+      background: {
+        default: mode === 'dark' ? '#121212' : '#f5f5f5',
+        paper: mode === 'dark'
+          ? 'rgba(255, 255, 255, 0.05)'  // Transparent overlay for most paper surfaces
+          : '#ffffff',
+      },
     },
-  },
-  typography: {
-    ...typography,
-    fontFamily: 'Inter, sans-serif',
-    h1: { fontWeight: 700, fontSize: '2.5rem' },
-    h2: { fontWeight: 600, fontSize: '2rem' },
-    body1: { fontWeight: 400, fontSize: '1rem', lineHeight: 1.5 },
-  },
-  shape: {
-    borderRadius: 8,
-  },
-  shadows: [
-    'none',
-    '0px 2px 4px rgba(0, 0, 0, 0.1)',
-    '0px 3px 6px rgba(0, 0, 0, 0.1)',
-    '0px 4px 8px rgba(0, 0, 0, 0.12)',
-  ],
-  spacing: 8,
-  customSpacing: spacing,
-  components: {
-    MuiTypography: {
-      variants: [
-        {
-          props: { variant: 'pointsValue' },
-          style: ({ theme }) => ({
-            fontSize: '0.7rem',
-            fontWeight: 700,
-            color: theme.palette.text.primary,
-            backgroundColor: theme.palette.background.default,
-            borderRadius: 8,
-            paddingLeft: theme.spacing(1),
-            paddingRight: theme.spacing(1),
-            paddingTop: theme.spacing(0.5),
-            paddingBottom: theme.spacing(0.5),
-          }),
-        },
-      ],
+    typography: {
+      ...typography,
+      fontFamily: 'Inter, sans-serif',
+      h1: { fontWeight: 700, fontSize: '2.5rem' },
+      h2: { fontWeight: 600, fontSize: '2rem' },
+      body1: { fontWeight: 400, fontSize: '1rem', lineHeight: 1.5 },
     },
-    MuiDrawer: {
-      styleOverrides: {
-        paper: {
-          backgroundColor: mode === 'dark' ? '#121212' : '#ffffff', // Solid color for Drawer background
+    shape: {
+      borderRadius: 8,
+    },
+    shadows: [
+      'none',
+      '0px 2px 4px rgba(0, 0, 0, 0.1)',
+      '0px 3px 6px rgba(0, 0, 0, 0.1)',
+      '0px 4px 8px rgba(0, 0, 0, 0.12)',
+    ],
+    spacing: 8,
+    customSpacing: spacing,
+    components: {
+      MuiTypography: {
+        variants: [
+          {
+            props: { variant: 'pointsValue' },
+            style: ({ theme }) => ({
+              fontSize: '0.75rem',
+              fontWeight: 700,
+              color: mode === 'dark' ? theme.palette.primary.light : theme.palette.primary.dark,
+              backgroundColor: theme.palette.shades.primaryShade,
+              borderRadius: 8,
+              paddingLeft: theme.spacing(1),
+              paddingRight: theme.spacing(1),
+              paddingTop: theme.spacing(0.5),
+              paddingBottom: theme.spacing(0.5),
+            }),
+          },
+          {
+            props: { variant: 'unitName' },
+            style: ({ theme }) => ({
+              fontSize: '0.875rem',
+              fontWeight: 500,
+            }),
+          },
+        ],
+      },
+      MuiDrawer: {
+        styleOverrides: {
+          paper: {
+            backgroundColor: mode === 'dark' ? '#121212' : '#ffffff', // Solid color for Drawer background
+          },
         },
       },
     },
-  },
-  utils: {
-    giveOuterPadding: {
-      px: {
-        xs: spacing.outerAppPadding.xs,
-        sm: spacing.outerAppPadding.sm,
-        md: spacing.outerAppPadding.md,
+    utils: {
+      giveOuterPadding: {
+        px: {
+          xs: spacing.outerAppPadding.xs,
+          sm: spacing.outerAppPadding.sm,
+          md: spacing.outerAppPadding.md,
+        },
       },
     },
-  },
-});
+  });
+
+  // Generate shades with 20% opacity for theme colors
+  theme.palette.shades = {
+    primaryShade: alpha(theme.palette.primary.main, 0.2),
+    secondaryShade: alpha(theme.palette.secondary.main, 0.2),
+    errorShade: alpha(theme.palette.error.main, 0.2),
+    infoShade: alpha(theme.palette.info.main, 0.2),
+    warningShade: alpha(theme.palette.warning.main, 0.2),
+    successShade: alpha(theme.palette.success.main, 0.2),
+  };
+
+  return theme;
+};
 
 export default getTheme;
+

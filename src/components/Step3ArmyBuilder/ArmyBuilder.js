@@ -43,7 +43,7 @@ function ArmyBuilder({ army, faction = "Aeldari", onChangeArmy }) {
   return (
     <Box width="100%" minHeight="100vh" sx={{ bgcolor: 'background.default' }}>
       {/* Editable Army Name with Placeholder */}
-      <Box px={2} pt={1} display="flex" alignItems="center" justifyContent="space-between" mb={-1}>
+      <Box px={2} pt={1} display="flex" alignItems="center" justifyContent="space-between" mb={-0.5}>
         {isEditingName ? (
           <TextField
             variant="standard"
@@ -85,10 +85,13 @@ function ArmyBuilder({ army, faction = "Aeldari", onChangeArmy }) {
           <MenuItem onClick={handleChangeArmy}>Change Army</MenuItem>
         </Menu>
       </Box>
-      <Box px={2}>
+      <Box px={2} mt={0.5} display="flex">
         {/* Faction Name and Points Display */}
-        <Typography variant="subtitle1" color="text.secondary" mb={3}>
-          {faction} • {totalPoints} pts
+        <Typography variant="subtitle1" color="text.secondary">
+          {faction}
+        </Typography>
+        <Typography variant="pointsValue" ml={1}>
+          {totalPoints} pts
         </Typography>
       </Box>
       {/* Category List with Total Points Calculation */}

@@ -18,7 +18,7 @@ function CategoryItem({ name, points, count, onDelete, isLastItem }) {
         minHeight: 56,
       }}
     >
-      <Typography>{name} x{count}</Typography>
+      <Typography variant="unitName">{name}</Typography>
       <Box display="flex" alignItems="center">
         <Typography variant="pointsValue" mr={1}>
           {points} pts

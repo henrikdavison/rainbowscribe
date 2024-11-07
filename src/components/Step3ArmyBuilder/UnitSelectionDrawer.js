@@ -31,13 +31,12 @@ function DrawerItem({ unit, isSelected, selectedCount, selectedPoints, onSelect,
           alignItems: 'center',
           textTransform: 'none',
           color: theme.palette.text.primary,
-          paddingLeft: 1.5,
           cursor: 'pointer',
           width: '100%',
         }}
       >
         <Box sx={{ flexGrow: 1, display: 'flex', alignItems: 'center' }}>
-          <Typography
+          <Typography variant="unitName"
             sx={{
               overflow: 'hidden',
               textOverflow: 'ellipsis',
@@ -49,11 +48,11 @@ function DrawerItem({ unit, isSelected, selectedCount, selectedPoints, onSelect,
         </Box>
 
         <Box display="flex" alignItems="center">
-          <Typography
+          <Typography variant="pointsValue"
             sx={{
               textAlign: 'right',
               minWidth: 50,
-              marginRight: isSelected ? 1 : 2,
+              marginRight: isSelected ? 1 : 1,
             }}
           >
             {unit.points} pts
