@@ -65,9 +65,9 @@ function CategoryList({ onTotalPointsChange }) {
     <>
       <Stack borderColor={theme.palette.divider}>
         {categories.map((category) => (
-          <Box key={category.name} marginTop={2} paddingLeft={2}>
+          <Box key={category.name} marginTop={2}>
             <Box display="flex" justifyContent="space-between" alignItems="center">
-              <Typography variant="overline">{category.name}</Typography>
+              <Typography variant="overline" paddingLeft={2}>{category.name}</Typography>
               <UnitSelectionDrawer
                 unitsByCategory={sampleUnits}
                 category={category.name}

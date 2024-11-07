@@ -1,4 +1,3 @@
-// src/theme/theme.js
 import { createTheme } from '@mui/material/styles';
 import typography from './typography';
 import spacing from './spacing';
@@ -39,10 +38,17 @@ const getTheme = (mode) => createTheme({
       variants: [
         {
           props: { variant: 'pointsValue' },
-          style: {
-            fontSize: '0.875rem',
-            fontWeight: 500,
-          },
+          style: ({ theme }) => ({
+            fontSize: '0.7rem',
+            fontWeight: 700,
+            color: theme.palette.text.primary,
+            backgroundColor: theme.palette.background.default,
+            borderRadius: 8,
+            paddingLeft: theme.spacing(1),
+            paddingRight: theme.spacing(1),
+            paddingTop: theme.spacing(0.5),
+            paddingBottom: theme.spacing(0.5),
+          }),
         },
       ],
     },

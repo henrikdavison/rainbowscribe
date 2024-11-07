@@ -11,7 +11,7 @@ function CategoryItem({ name, points, count, onDelete, isLastItem }) {
         justifyContent: 'space-between',
         alignItems: 'center',
         padding: 1.5,
-        marginX: 1,
+        marginX: 0.5,
         marginY: 0.5,
         bgcolor: 'background.paper',
         borderRadius: 1.5,
