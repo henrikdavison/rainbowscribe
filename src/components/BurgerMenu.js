@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import { IconButton, Drawer, List, ListItem, ListItemText, Box } from '@mui/material';
+import { Drawer, List, ListItem, ListItemText, Box, Switch, IconButton, Typography } from '@mui/material';
 import { Menu } from 'lucide-react';
 
-function BurgerMenu() {
+function BurgerMenu({ toggleDarkMode, mode }) {
   const [open, setOpen] = useState(false);
 
   const handleToggle = () => setOpen(!open);
@@ -13,16 +13,18 @@ function BurgerMenu() {
         <Menu size={24} />
       </IconButton>
       <Drawer anchor="left" open={open} onClose={handleToggle}>
-        <List sx={{ width: 250 }}>
-          <ListItem button onClick={handleToggle}>
-            <ListItemText primary="Home" />
+        <List sx={{ width: 300 }}>
+        <ListItem button onClick={handleToggle}>
+            <ListItemText primary="Army Builder" />
           </ListItem>
           <ListItem button onClick={handleToggle}>
             <ListItemText primary="Settings" />
           </ListItem>
-          <ListItem button onClick={handleToggle}>
-            <ListItemText primary="About" />
+          <ListItem>
+            <ListItemText primary="Dark Mode" />
+            <Switch checked={mode === 'dark'} onChange={toggleDarkMode} />
           </ListItem>
+          {/* Additional items can be added here */}
         </List>
       </Drawer>
     </Box>

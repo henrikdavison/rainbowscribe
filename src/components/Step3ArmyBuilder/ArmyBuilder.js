@@ -1,7 +1,6 @@
-// src/components/Step3ArmyBuilder/ArmyBuilder.js
 import React, { useState } from 'react';
 import { Box, Typography, IconButton, Menu, MenuItem, TextField } from '@mui/material';
-import MoreVertIcon from '@mui/icons-material/MoreVert';
+import { MoreVertical, Edit3 } from 'lucide-react';
 import CategoryList from './CategoryList';
 
 function ArmyBuilder({ army, faction = "Aeldari", onChangeArmy }) {
@@ -44,7 +43,7 @@ function ArmyBuilder({ army, faction = "Aeldari", onChangeArmy }) {
   return (
     <Box width="100%" minHeight="100vh" sx={{ bgcolor: 'background.default' }}>
       {/* Editable Army Name with Placeholder */}
-      <Box px={2} pt={2} display="flex" alignItems="center" justifyContent="space-between" mb={-0.5}>
+      <Box px={2} pt={1} display="flex" alignItems="center" justifyContent="space-between" mb={-1}>
         {isEditingName ? (
           <TextField
             variant="standard"
@@ -61,17 +60,22 @@ function ArmyBuilder({ army, faction = "Aeldari", onChangeArmy }) {
             }}
           />
         ) : (
-          <Typography
-            variant="h6"
-            color={customName ? 'text.primary' : 'text.secondary'}
-            fontWeight="bold"
-            onClick={handleNameClick}
-          >
-            {customName || "Add Army Name"}
-          </Typography>
+          <Box display="flex" alignItems="center">
+            <Typography
+              variant="h6"
+              color={customName ? 'text.primary' : 'text.secondary'}
+              fontWeight="bold"
+              onClick={handleNameClick}
+            >
+              {customName || "Army name"}
+            </Typography>
+            <IconButton size="small" onClick={handleNameClick} color="inherit" sx={{ ml: 1 }}>
+              <Edit3 size={16} />
+            </IconButton>
+          </Box>
         )}
         <IconButton onClick={handleMenuOpen} color="inherit" sx={{ ml: 1 }}>
-          <MoreVertIcon />
+          <MoreVertical size={20} />
         </IconButton>
         <Menu
           anchorEl={anchorEl}
@@ -86,10 +90,9 @@ function ArmyBuilder({ army, faction = "Aeldari", onChangeArmy }) {
         <Typography variant="subtitle1" color="text.secondary" mb={3}>
           {faction} • {totalPoints} pts
         </Typography>
-        </Box>
-        {/* Category List with Total Points Calculation */}
-        <CategoryList onTotalPointsChange={handleTotalPointsChange} />
-       
+      </Box>
+      {/* Category List with Total Points Calculation */}
+      <CategoryList onTotalPointsChange={handleTotalPointsChange} />
     </Box>
   );
 }
