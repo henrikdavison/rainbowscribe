@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { Box, Typography, Stack, useTheme } from '@mui/material';
 import CategoryItem from './CategoryItem';
+import DrawerManager from '../../utils/DrawerManager';
 import UnitSelectionDrawer from './UnitSelectionDrawer';
-import { categories, sampleUnits } from '../../data/unitData'; 
+import { categories, sampleUnits } from '../../data/unitData';
 import { getUnitSummary } from '../../utils/unitSummary';
 
 function CategoryList({ onTotalPointsChange }) {
@@ -63,14 +64,15 @@ function CategoryList({ onTotalPointsChange }) {
             </Box>
             <Stack>
               {army[category.name].map((item) => (
-                <CategoryItem
-                  key={item.id}
-                  unit={item} // Pass the entire item as unit
-                  count={unitCounts[item.name] || 0}
-                  unitSummary={getUnitSummary(item)} // Add unit summary here
-                  onDelete={() => handleDeleteItem(category.name, item.id, item.name)}
-                  isLastItem={item === army[category.name][army[category.name].length - 1]}
-                />
+                <DrawerManager unit={item} key={item.id}>
+                  <CategoryItem
+                    unit={item} // Pass the entire item as unit
+                    count={unitCounts[item.name] || 0}
+                    unitSummary={getUnitSummary(item)} // Add unit summary here
+                    onDelete={() => handleDeleteItem(category.name, item.id, item.name)}
+                    isLastItem={item === army[category.name][army[category.name].length - 1]}
+                  />
+                </DrawerManager>
               ))}
             </Stack>
           </Box>

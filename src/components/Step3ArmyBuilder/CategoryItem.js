@@ -1,11 +1,11 @@
 import React from 'react';
 import { Box, Typography, IconButton, Paper } from '@mui/material';
 import { Trash, Eye, Edit } from 'lucide-react';
-import { getUnitSummary } from '../../utils/unitSummary'; // Import the unit summary utility
+import { getUnitSummary } from '../../utils/unitSummary';
 
-function CategoryItem({ unit, count, onDelete }) {
-  const { name, points } = unit; // Extract name and points from unit
-  const unitSummary = getUnitSummary(unit); // Generate the summary based on the unit object
+function CategoryItem({ unit, count, onDelete, openDrawer }) {
+  const { name, points } = unit;
+  const unitSummary = getUnitSummary(unit);
 
   return (
     <Paper
@@ -22,7 +22,6 @@ function CategoryItem({ unit, count, onDelete }) {
         minHeight: 56,
       }}
     >
-      {/* Box to stack name and unitSummary vertically */}
       <Box display="flex" flexDirection="column" alignItems="flex-start">
         <Typography variant="unitName">{name}</Typography>
         <Typography variant="caption" color="text.secondary">
@@ -37,10 +36,10 @@ function CategoryItem({ unit, count, onDelete }) {
         <IconButton size="medium" onClick={onDelete}>
           <Trash size={18} />
         </IconButton>
-        <IconButton size="medium">
+        <IconButton size="medium" onClick={() => openDrawer('view')}>
           <Eye size={18} />
         </IconButton>
-        <IconButton size="medium">
+        <IconButton size="medium" onClick={() => openDrawer('edit')}>
           <Edit size={18} />
         </IconButton>
       </Box>
@@ -49,4 +48,3 @@ function CategoryItem({ unit, count, onDelete }) {
 }
 
 export default CategoryItem;
-
