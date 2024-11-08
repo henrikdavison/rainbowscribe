@@ -55,6 +55,10 @@ function ArmyBuilder({ army, faction = "Aeldari", onChangeArmy }) {
             fullWidth
             sx={{
               color: hasEditedName ? 'text.primary' : 'text.secondary',
+              maxWidth: {
+              xs: 200,
+              sm: 300,
+              }
             }}
           />
         ) : (

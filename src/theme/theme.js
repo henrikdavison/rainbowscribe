@@ -85,6 +85,8 @@ const getTheme = (mode) => {
               borderRadius: 16,
               borderColor: theme.palette.text.secondary,
               color: theme.palette.text.secondary,
+              paddingBottom: 4,
+              paddingTop: 4,
               borderWidth: 1,
               borderStyle: 'solid',
               '&:hover': {
