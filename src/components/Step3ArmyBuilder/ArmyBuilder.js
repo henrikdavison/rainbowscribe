@@ -55,6 +55,11 @@ function ArmyBuilder({ army, faction = "Aeldari", onChangeArmy }) {
             fullWidth
             sx={{
               color: hasEditedName ? 'text.primary' : 'text.secondary',
+              '& .MuiInputBase-input': {
+                  fontSize: '1.5rem',
+                  fontWeight: '400', // Change the font size here
+                  lineHeight: '1rem',
+                  },
               maxWidth: {
               xs: 200,
               sm: 300,
@@ -64,7 +69,7 @@ function ArmyBuilder({ army, faction = "Aeldari", onChangeArmy }) {
         ) : (
           <Box display="flex" alignItems="center">
             <Typography
-              variant="h6"
+              variant="h5"
               color={customName ? 'text.primary' : 'text.secondary'}
               onClick={handleNameClick}
             >
@@ -90,7 +95,7 @@ function ArmyBuilder({ army, faction = "Aeldari", onChangeArmy }) {
           <MenuItem onClick={handleChangeArmy}>Change Army</MenuItem>
         </Menu>
       </Box>
-      <Box px={2} mt={0.5} display="flex">
+      <Box px={2} mt={0.5} display="flex" alignItems="center">
         {/* Faction Name and Points Display */}
         <Typography variant="subtitle1" color="text.secondary">
           {faction}

@@ -59,12 +59,14 @@ const getTheme = (mode) => {
               paddingRight: theme.spacing(1),
               paddingTop: theme.spacing(0.5),
               paddingBottom: theme.spacing(0.5),
+              lineHeight: '1rem',
+              whiteSpace: 'nowrap',
             }),
           },
           {
             props: { variant: 'unitName' },
             style: ({ theme }) => ({
-              fontSize: '0.875rem',
+              fontSize: '1rem',
               fontWeight: 500,
             }),
           },

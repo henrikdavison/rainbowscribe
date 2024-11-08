@@ -22,24 +22,49 @@ function CategoryItem({ unit, count, onDelete, openDrawer }) {
         minHeight: 56,
       }}
     >
-      <Box display="flex" flexDirection="column" alignItems="flex-start">
-        <Typography variant="unitName">{name}</Typography>
-        <Typography variant="caption" color="text.secondary">
+      {/* Left side: Unit name with points */}
+      <Box display="flex" flexDirection="column" flex="1 1 auto" minWidth={0}>
+        <Box display="flex" alignItems="center" width="100%">
+          <Typography
+            variant="unitName"
+            sx={{
+              overflow: 'hidden',
+              textOverflow: 'ellipsis',
+              whiteSpace: 'nowrap',
+              mr: 1,
+            }}
+          >
+            {name}
+          </Typography>
+          <Typography variant="pointsValue" sx={{ flexShrink: 0 }}>
+            {points} pts
+          </Typography>
+        </Box>
+
+        {/* Grey unit summary text */}
+        <Typography
+          variant="caption"
+          color="text.secondary"
+          sx={{
+            overflow: 'hidden',
+            textOverflow: 'ellipsis',
+            whiteSpace: 'nowrap',
+            mt: 0.5,
+          }}
+        >
           {unitSummary}
         </Typography>
       </Box>
-      
-      <Box display="flex" alignItems="center">
-        <Typography variant="pointsValue" mr={1}>
-          {points} pts
-        </Typography>
+
+      {/* Right side: Icons */}
+      <Box display="flex" alignItems="center" flexShrink={0} ml={2}>
         <IconButton size="medium" onClick={onDelete}>
           <Trash size={18} />
         </IconButton>
-        <IconButton size="medium" onClick={() => openDrawer('view')}>
+        <IconButton size="medium" ml={1} onClick={() => openDrawer('view')}>
           <Eye size={18} />
         </IconButton>
-        <IconButton size="medium" onClick={() => openDrawer('edit')}>
+        <IconButton size="medium" ml={1} onClick={() => openDrawer('edit')}>
           <Edit size={18} />
         </IconButton>
       </Box>

@@ -1,3 +1,5 @@
+// TODO: Refactor to use DrawerManager.js
+
 import React, { useState } from 'react';
 import { Fab, SwipeableDrawer, List, ListSubheader, Box, Paper, Typography, IconButton, Button, useTheme, useMediaQuery } from '@mui/material';
 import { Plus, Minus, X } from 'lucide-react';
@@ -43,23 +45,22 @@ function DrawerItem({ unit, isSelected, selectedCount, selectedPoints, onSelect,
               textOverflow: 'ellipsis',
               whiteSpace: 'nowrap',
               mr: 1,
+              maxWidth: { xs: '190px', sm: '250px', xl:'400px' }, 
             }}
           >
             {unit.name}
           </Typography>
-        </Box>
-
-        <Box display="flex" alignItems="center">
           <Typography
             variant="pointsValue"
             sx={{
               textAlign: 'right',
-              minWidth: 50,
-              marginRight: isSelected ? 1 : 1,
             }}
           >
             {unit.points} pts
           </Typography>
+        </Box>
+
+        <Box display="flex" alignItems="center">
 
           <Box sx={{ visibility: isSelected ? 'visible' : 'hidden' }}>
             <IconButton size="small" onClick={(e) => { e.stopPropagation(); onDeselect(unit); }}>
