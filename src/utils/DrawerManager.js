@@ -27,6 +27,7 @@ function DrawerManager({ unit, children }) {
             borderTopLeftRadius: 8,
             borderTopRightRadius: 8,
             height: 'calc(100vh - 64px)', // Adjust for menu height if necessary
+            bgcolor: theme.palette.background.default,
           },
         }}
       >
