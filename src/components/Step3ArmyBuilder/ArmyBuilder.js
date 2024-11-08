@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Box, Typography, IconButton, Menu, MenuItem, TextField } from '@mui/material';
+import { Box, Typography, IconButton, Menu, MenuItem, TextField, Button } from '@mui/material';
 import { MoreVertical, Edit3 } from 'lucide-react';
 import CategoryList from './CategoryList';
 
@@ -54,7 +54,6 @@ function ArmyBuilder({ army, faction = "Aeldari", onChangeArmy }) {
             autoFocus
             fullWidth
             sx={{
-
               color: hasEditedName ? 'text.primary' : 'text.secondary',
             }}
           />
@@ -72,9 +71,13 @@ function ArmyBuilder({ army, faction = "Aeldari", onChangeArmy }) {
             </IconButton>
           </Box>
         )}
-        <IconButton onClick={handleMenuOpen} color="inherit" sx={{ ml: 1 }}>
-          <MoreVertical size={20} />
-        </IconButton>
+        <Button
+          variant="options"
+          onClick={handleMenuOpen}
+          endIcon={<MoreVertical size={18} />} // Icon moved to the right
+        >
+          Options
+        </Button>
         <Menu
           anchorEl={anchorEl}
           open={Boolean(anchorEl)}
@@ -99,3 +102,4 @@ function ArmyBuilder({ army, faction = "Aeldari", onChangeArmy }) {
 }
 
 export default ArmyBuilder;
+

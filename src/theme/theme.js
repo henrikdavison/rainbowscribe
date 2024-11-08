@@ -6,6 +6,7 @@ import "@fontsource/inter/400.css";
 import "@fontsource/inter/500.css";
 import "@fontsource/inter/600.css";
 import "@fontsource/inter/700.css";
+import { capitalize } from '@mui/material';
 
 const getTheme = (mode) => {
   const theme = createTheme({
@@ -27,9 +28,10 @@ const getTheme = (mode) => {
     typography: {
       ...typography,
       fontFamily: 'Inter, sans-serif',
-      h1: { fontWeight: 700, fontSize: '2.5rem' },
+      h1: { fontWeight: 600, fontSize: '2.5rem' },
       h2: { fontWeight: 600, fontSize: '2rem' },
       body1: { fontWeight: 400, fontSize: '1rem' },
+      button: { textTransform: capitalize, },
     },
     shape: {
       borderRadius: 8,
@@ -75,6 +77,24 @@ const getTheme = (mode) => {
           },
         },
       },
+      MuiButton: {
+        variants: [
+          {
+            props: { variant: 'options' },
+            style: ({ theme }) => ({
+              borderRadius: 16,
+              borderColor: theme.palette.text.secondary,
+              color: theme.palette.text.secondary,
+              borderWidth: 1,
+              borderStyle: 'solid',
+              '&:hover': {
+                borderColor: theme.palette.text.secondary,
+                backgroundColor: alpha(theme.palette.text.secondary, 0.1),
+              },
+            }),
+          },
+        ],
+      },
     },
     utils: {
       giveOuterPadding: {
@@ -101,4 +121,3 @@ const getTheme = (mode) => {
 };
 
 export default getTheme;
-
