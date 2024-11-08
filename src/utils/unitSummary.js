@@ -12,9 +12,9 @@ export function getUnitSummary(unit) {
   
     // Build summary parts
     const summaryParts = [];
-    if (rangedWeapons) summaryParts.push(`Ranged: ${rangedWeapons}`);
-    if (meleeWeapons) summaryParts.push(`Melee: ${meleeWeapons}`);
-    if (selections) summaryParts.push(`Selections: ${selections}`);
+    if (rangedWeapons) summaryParts.push(`${rangedWeapons}`);
+    if (meleeWeapons) summaryParts.push(`${meleeWeapons}`);
+    if (selections) summaryParts.push(`${selections}`);
   
     // Join summary parts with separators
     return summaryParts.join(" | ");

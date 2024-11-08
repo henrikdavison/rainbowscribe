@@ -3,6 +3,7 @@ import { Box, Typography, Stack, useTheme } from '@mui/material';
 import CategoryItem from './CategoryItem';
 import UnitSelectionDrawer from './UnitSelectionDrawer';
 import { categories, sampleUnits } from '../../data/unitData'; 
+import { getUnitSummary } from '../../utils/unitSummary';
 
 function CategoryList({ onTotalPointsChange }) {
   const theme = useTheme();
@@ -64,9 +65,9 @@ function CategoryList({ onTotalPointsChange }) {
               {army[category.name].map((item) => (
                 <CategoryItem
                   key={item.id}
-                  name={item.name}
-                  points={item.points}
+                  unit={item} // Pass the entire item as unit
                   count={unitCounts[item.name] || 0}
+                  unitSummary={getUnitSummary(item)} // Add unit summary here
                   onDelete={() => handleDeleteItem(category.name, item.id, item.name)}
                   isLastItem={item === army[category.name][army[category.name].length - 1]}
                 />
