@@ -4,6 +4,8 @@ import { Box, CssBaseline, ThemeProvider } from '@mui/material';
 import TopMenu from './components/TopMenu';
 import ArmyBuilderRoute from './components/ArmyBuilderRoute'; // Adjust the path if necessary
 import getTheme from './theme/theme';
+import SelectCatalogue from './BluescribePrototype/SelectCatalogue'; // Import the new SelectCatalogue component
+import SelectSystem from './BluescribePrototype/repo/SelectSystem';
 
 function App() {
   const [step, setStep] = useState(1);
@@ -60,6 +62,9 @@ function App() {
                 />
               }
             />
+            {/* New route for the SelectCatalogue prototype */}
+            <Route path="/bluescribe-prototype/catalogues" element={<SelectCatalogue />} />
+            <Route path="/select-system" element={<SelectSystem />} />
           </Routes>
         </Box>
       </Router>

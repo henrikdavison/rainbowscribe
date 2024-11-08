@@ -25,9 +25,16 @@ function BurgerMenu({ toggleDarkMode, mode }) {
             <ListItemText primary="Dark Mode" />
             <Switch checked={mode === 'dark'} onChange={toggleDarkMode} />
           </ListItem>
-          {/* Link to Prototype page */}
+          {/* Link to Army Builder */}
           <ListItem button component={Link} to="/army-builder" onClick={handleToggle}>
             <ListItemText primary="Army Builder" />
+          </ListItem>
+          {/* Link to Bluescribe Prototype */}
+          <ListItem button component={Link} to="/bluescribe-prototype/catalogues" onClick={handleToggle}>
+            <ListItemText primary="Catalogues Prototype" />
+          </ListItem>
+          <ListItem button component={Link} to="/select-system" onClick={handleToggle}>
+            <ListItemText primary="Select System (Prototype)" />
           </ListItem>
         </List>
       </Drawer>
