@@ -2,7 +2,8 @@ import _ from 'lodash'
 import an from 'indefinite'
 import pluralize from 'pluralize'
 
-import { findId, gatherCatalogues, getCatalogue, randomId } from './utils'
+import { findId, gatherCatalogues, getCatalogue, randomId } from './commonUtils';
+
 
 const arrayMerge = (dest, source) => {
   Object.entries(source).forEach(([key, value]) => {
