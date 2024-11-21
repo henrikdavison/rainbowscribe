@@ -15,8 +15,8 @@ function BurgerMenu({ toggleDarkMode, mode }) {
       </IconButton>
       <Drawer anchor="left" open={open} onClose={handleToggle}>
         <List sx={{ width: 300 }}>
-          <ListItem button onClick={handleToggle}>
-            <ListItemText primary="Prototype N" />
+          <ListItem button component={Link} to="/prototype">
+            <ListItemText primary="Prototype" />
           </ListItem>
           <ListItem button onClick={handleToggle}>
             <ListItemText primary="Settings" />
@@ -25,7 +25,6 @@ function BurgerMenu({ toggleDarkMode, mode }) {
             <ListItemText primary="Dark Mode" />
             <Switch checked={mode === 'dark'} onChange={toggleDarkMode} />
           </ListItem>
-          {/* Link to Prototype page */}
           <ListItem button component={Link} to="/army-builder" onClick={handleToggle}>
             <ListItemText primary="Army Builder" />
           </ListItem>

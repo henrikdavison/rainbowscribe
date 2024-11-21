@@ -4,6 +4,7 @@ import { Box, CssBaseline, ThemeProvider } from '@mui/material';
 import TopMenu from './components/TopMenu';
 import ArmyBuilderRoute from './components/ArmyBuilderRoute'; // Adjust the path if necessary
 import getTheme from './theme/theme';
+import Prototype from './prototype/PrototypePage';
 
 function App() {
   const [step, setStep] = useState(1);
@@ -45,6 +46,7 @@ function App() {
         <Box sx={{ mt: '16px' }}>
           <Routes>
             <Route path="/" element={<Navigate to="/army-builder" replace />} />
+            <Route path="/prototype" element={<Prototype />} />
             <Route
               path="/army-builder"
               element={
